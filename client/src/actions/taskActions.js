@@ -49,16 +49,21 @@ export const getTask = (id) => async (dispatch) => {
 
 // add task
 export const addTask = (task) => async (dispatch) => {
+  // console.log('add');
   const config = {
     headers: {
       'Content-Type': 'application/json',
     },
   };
 
+  const body = {
+    name: task,
+  };
+
   try {
     setLoading();
 
-    const res = await axios.post('/api/tasks', task, config);
+    const res = await axios.post('/api/tasks', body, config);
 
     dispatch({
       type: ADD_TASK,

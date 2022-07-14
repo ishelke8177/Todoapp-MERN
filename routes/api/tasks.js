@@ -38,19 +38,17 @@ router.get('/:id', auth, async (req, res) => {
 // add new task
 router.post(
   '/',
-  auth,
-  check('name', 'Name is required').not().isEmpty(),
+  [auth, check('name', 'Name is required').notEmpty()],
   async (req, res) => {
+    // console.log('success');
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name } = req.body;
-
     try {
       const newTask = new Task({
-        name,
+        name: req.body.name,
         user: req.user.id,
       });
 

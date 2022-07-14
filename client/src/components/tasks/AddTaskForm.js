@@ -9,11 +9,13 @@ const AddTaskForm = ({ addTask }) => {
   const [task, setTask] = useState('');
 
   const onSubmit = () => {
+    // console.log('submit');
     if (task === '') {
       M.toast({ html: 'Please enter a task' });
     } else {
+      // console.log('before');
       addTask(task);
-
+      // console.log('task');
       M.toast({ html: `Task added` });
 
       // Clear Fields
